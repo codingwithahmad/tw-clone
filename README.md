@@ -8,4 +8,4 @@ This is a social media clone by django
 - [x] Create Twit model 
 - [x] Create TimeLine view 
 - [x] Create timeline.html for TimeLine view
-- [ ] Fix showing image less twit bug
+- [x] Fix showing image less twit bug
