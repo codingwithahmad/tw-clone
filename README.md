@@ -11,3 +11,5 @@ This is a social media clone by django
 - [x] Fix showing image less twit bug
 - [x] Add profile_photo field to User mdoel
 - [x] Add profile_photo field to UserAdmin fieldsets
+- [x] Add login url to account app 
+- [x] Create login.html and styles.css for login page
