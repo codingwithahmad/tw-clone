@@ -13,3 +13,8 @@ This is a social media clone by django
 - [x] Add profile_photo field to UserAdmin fieldsets
 - [x] Add login url to account app 
 - [x] Create login.html and styles.css for login page
+- [x] Add crispy_forms and widget_tweaks app to project
+- [x] Create Twit view at account app 
+- [x] Add create_twit.html for Twit view
+- [x] Add base.html at templates/twit and set timeLine.html with block in base.html
+- [x] Add forms.py at account app and create a form for Twit view
