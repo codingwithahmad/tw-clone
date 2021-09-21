@@ -1,0 +1,22 @@
+{% load base_tags %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+<form method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+			<div class="container my-font">
+				<div class="profile mb-2">
+              		<img src="{{ user.profile_photo.url }}" alt="..." class="profile-photo">
+              		<h3 class="d-inline mx-3 my-font">
+		                {% if user.get_full_name %}
+		                  {{ user.get_full_name }}
+		                {% else %}
+		                  {{ user.username }}
+		                {% endif %}
+              		</h3>
+            	</div>
+				<div class="col-12 my-4">
+					{{ form.twit|attr:"placeholder:چیزی تویت کنید"|as_crispy_field }}
+				</div>
+				<button class="btn-primary p-2 text-white border border-dark border-3 rounded rounded-5">توییت</button>
+			</div>
+</form>

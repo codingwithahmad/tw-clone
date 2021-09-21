@@ -20,3 +20,7 @@ This is a social media clone by django
 - [x] Add forms.py at account app and create a form for Twit view
 - [x] Change profile picture size and padding at create_twit.html
 - [x] Change font at timeLine.html and create_twit.html
+- [x] Add templatetags folder at twit app
+- [x] Create templatetags/base_tags.py file and Make twit_bar inclusion_tag
+- [x] Make twit/partial/create_twit.html 
+- [x] Add {% twit_bar %} to base.html at twit folder

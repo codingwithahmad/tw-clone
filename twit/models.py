@@ -4,7 +4,7 @@ from account.models import User
 # Create your models here.
 
 class Twit(models.Model):
-	twit = models.CharField(max_length=280, verbose_name="توییت")
+	twit = models.TextField(max_length=280, verbose_name="توییت")
 	img = models.ImageField(upload_to='images', blank=True, null=True)
 	author = models.ForeignKey(User, verbose_name="نویسنده", on_delete=models.CASCADE)
 
