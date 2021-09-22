@@ -25,4 +25,4 @@ This is a social media clone by django
 - [x] Make twit/partial/create_twit.html 
 - [x] Add {% twit_bar %} to base.html at twit folder
 - [x] Fix sending twit bug from account/twit url 
-- [ ] Fix sendign twit from '' url at twit app
+- [x] Fix sendign twit from '' url at twit app
