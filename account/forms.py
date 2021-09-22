@@ -1,7 +1,7 @@
 from crispy_forms.helper import FormHelper
 from django import forms
 from twit.models import Twit
-
+from django.urls import reverse_lazy, reverse
 
 class MyForm(forms.ModelForm):
 
@@ -11,12 +11,17 @@ class MyForm(forms.ModelForm):
 		self.helper.form_show_labels = False		 
 
 	# def form_valid(self, form):
-	# 	twit = form.save(commit=False)
-	# 	user = self.request.user
-	# 	twit.user = user
-	# 	twit.save()
+	# 	self.obj = form.save(commit=False)
+	# 	self.obj.author = self.request.user
 	# 	return super(MyForm, self).form_valid(form)
 
+	# def save(self):
+	# 	twit = super(MyForm, self).save(commit=False)
+	# 	twit.author = self.request.user
+	# 	twit.save()
+	# 	return twit
+
+	
 	class Meta:
 		model = Twit
-		fields = ["twit", "img", "author"]
+		fields = ["twit", "img"]
