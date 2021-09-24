@@ -28,3 +28,4 @@ This is a social media clone by django
 - [x] Fix sendign twit from '' url at twit app
 - [x] Fix ImageField view in template
 - [x] Fix upload image bug
+- [x] Fix Login url for authenticated users

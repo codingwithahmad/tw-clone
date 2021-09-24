@@ -5,6 +5,7 @@ from .forms import MyForm
 from .mixins import FormValid
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
+from django.contrib.auth.views import LoginView
 # Create your views here.
 
 class Twit(CreateView):
@@ -21,3 +22,9 @@ class Twit(CreateView):
 
 		return HttpResponseRedirect(reverse_lazy('twits:TimeLine'))
 
+class Login(LoginView):
+	def get_success_url(self):
+		user = self.request.user
+
+		if user.is_authenticated:
+			return reverse_lazy('twits:TimeLine')
