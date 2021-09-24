@@ -26,3 +26,5 @@ This is a social media clone by django
 - [x] Add {% twit_bar %} to base.html at twit folder
 - [x] Fix sending twit bug from account/twit url 
 - [x] Fix sendign twit from '' url at twit app
+- [x] Fix ImageField view in template
+- [ ] Fix upload image bug
