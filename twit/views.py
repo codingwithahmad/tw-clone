@@ -13,7 +13,7 @@ class TimeLine(LoginRequiredMixin, ListView):
 	context_name = "twits"
 
 	def post(self, request, *args, **kwargs):
-		self.form = MyForm(request.POST)
+		self.form = MyForm(request.POST, request.FILES)
 		twit = self.form.save(commit=False)
 		twit.author = request.user
 		twit.save()

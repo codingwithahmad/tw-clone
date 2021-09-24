@@ -27,4 +27,4 @@ This is a social media clone by django
 - [x] Fix sending twit bug from account/twit url 
 - [x] Fix sendign twit from '' url at twit app
 - [x] Fix ImageField view in template
-- [ ] Fix upload image bug
+- [x] Fix upload image bug
