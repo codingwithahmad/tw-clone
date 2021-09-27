@@ -24,6 +24,7 @@
 		                  {{ user.username }}
 		                {% endif %}
               		</h3>
+              		<span class="float-start"><a href="{% url 'account:logout' %}" style="text-decoration: none; font-weight: bold;">Logout<i class="fas fa-sign-out-alt fa-lg m-2"></i></a></span>
             	</div>
 				<div class="col-12 my-4">
 					{{ form.twit|attr:"placeholder:چیزی تویت کنید"|as_crispy_field }}
