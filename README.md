@@ -30,3 +30,4 @@ This is a social media clone by django
 - [x] Fix upload image bug
 - [x] Fix Login url for authenticated users
 - [x] Add Logout option at create_twit.html for account and twits apps
+- [x] Add password forget and it's html files and urls

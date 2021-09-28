@@ -21,6 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('twit.urls')),
     path('account/', include('account.urls')),
+    path('', include("django.contrib.auth.urls")),
 ]
 
 from django.conf import settings
