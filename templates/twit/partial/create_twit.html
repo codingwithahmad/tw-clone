@@ -8,9 +8,9 @@
               		<img src="{{ user.profile_photo.url }}" alt="..." class="profile-photo">
               		<h3 class="d-inline mx-3 my-font">
 		                {% if user.get_full_name %}
-		                  {{ user.get_full_name }}
+		                  <a href="{% url 'account:tw' %}" style="text-decoration:none;">{{ user.get_full_name }}</a>
 		                {% else %}
-		                  {{ user.username }}
+		                  <a href="{% url 'account:tw' %}" style="text-decoration:none;">{{ user.username }}</a>
 		                {% endif %}
               		</h3>
               		<span class="float-start"><a href="{% url 'account:logout' %}" style="text-decoration: none; font-weight: bold;">Logout<i class="fas fa-sign-out-alt fa-lg m-2"></i></a></span>

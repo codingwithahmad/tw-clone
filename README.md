@@ -31,3 +31,4 @@ This is a social media clone by django
 - [x] Fix Login url for authenticated users
 - [x] Add Logout option at create_twit.html for account and twits apps
 - [x] Add password forget and it's html files and urls
+- [x] Add bio field to user model and set it for create_twit.html at account app

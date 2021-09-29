@@ -1,4 +1,3 @@
-
 {% load crispy_forms_tags %}
 {% load widget_tweaks %}
 {% load static %}
@@ -11,21 +10,28 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'twit/css/rtl.css' %}">
 	<title>Tweet</title>
 </head>
-<body>
+<body class="bg-dark text-white">
+	<div class="container profile mb-2 p-4">
+		<img src="{{ user.profile_photo.url }}" style="width: 70px; height: 70px;" alt="..." class="profile-photo">
+		<h3 class="d-inline mx-3 my-font">
+			{% if user.get_full_name %}
+			{{ user.get_full_name }}
+			{% else %}
+			{{ user.username }}
+			{% endif %}
+		</h3>
+		<span class="float-start"><a href="{% url 'account:logout' %}" style="text-decoration: none; font-weight: bold;" class="text-danger">Logout<i class="fas fa-sign-out-alt fa-lg m-2 text-danger"></i></a></span>
+		<div class="info p-2">
+			{% if user.bio %}
+				<p>
+					{{ user.bio|linebreaks }}	
+				</p>
+			{% endif %}
+		</div>
+	</div>
 	<form method="POST">
 			{% csrf_token %}
 			<div class="container my-font p-4">
-				<div class="profile mb-2">
-              		<img src="{{ user.profile_photo.url }}" alt="..." class="profile-photo">
-              		<h3 class="d-inline mx-3 my-font">
-		                {% if user.get_full_name %}
-		                  {{ user.get_full_name }}
-		                {% else %}
-		                  {{ user.username }}
-		                {% endif %}
-              		</h3>
-              		<span class="float-start"><a href="{% url 'account:logout' %}" style="text-decoration: none; font-weight: bold;">Logout<i class="fas fa-sign-out-alt fa-lg m-2"></i></a></span>
-            	</div>
 				<div class="col-12 my-4">
 					{{ form.twit|attr:"placeholder:چیزی تویت کنید"|as_crispy_field }}
 				</div>
