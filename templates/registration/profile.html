@@ -1,26 +1,26 @@
 {% extends 'registration/base_profile.html' %}
 
-{% load crispy_forms_tags %}
-{% load widget_tweaks %}
+
 {% load static %}
 
 
 {% block user_info %}
-<div class="container profile mb-2 my-font p-4">
-		<img src="{{ user.profile_photo.url }}" style="width: 70px; height: 70px;" alt="..." class="profile-photo">
+<div class="container profile my-font mb-2 p-4">
+		<img src="{{ author.profile_photo.url }}" style="width: 70px; height: 70px;" alt="..." class="profile-photo">
 		<h3 class="d-inline mx-3 my-font">
-			{% if user.get_full_name %}
-			{{ user.get_full_name }}
+			{% if author.get_full_name %}
+			{{ author.get_full_name }}
 			{% else %}
-			{{ user.username }}
+			{{ author.username }}
 			{% endif %}
 		</h3>
 		<span class="float-start"><a href="{% url 'account:logout' %}" style="text-decoration: none; font-weight: bold;" class="text-danger">خروج<i class="fas fa-sign-out-alt fa-lg m-2 text-danger"></i></a></span>
-		<span class="float-start"><a href="{% url 'twits:TimeLine' %}" style="text-decoration: none; font-weight: bold;" class="">خانه<i class="fas fa-home fa-lg m-2"></i></a></span>
+    <span class="float-start"><a href="{% url 'twits:TimeLine' %}" style="text-decoration: none; font-weight: bold;" class="">خانه<i class="fas fa-home fa-lg m-2"></i></a></span>
+    <div class="info p-2">
 		<div class="info p-2">
-			{% if user.bio %}
+			{% if author.bio %}
 				<p>
-					{{ user.bio|linebreaks }}	
+					{{ author.bio|linebreaks }}	
 				</p>
 			{% endif %}
 		</div>
@@ -35,13 +35,13 @@
           <div class="card-body">
             <div class="profile mb-2">
               <img src="{{ twit.author.profile_photo.url }}" style="height: 50px; width: 50px;" class="rounded-circle" alt="...">
-              <a href="{% url 'account:profile' twit.author.username %}" style="text-decoration:none;"><h3 class="d-inline mx-3">
+              <h3 class="d-inline mx-3">
                 {% if twit.author.get_full_name %}
                   {{ twit.author.get_full_name }}
                 {% else %}
                   {{ twit.author.username }}
                 {% endif %}
-              </h3></a>
+              </h3>
             </div>
             <p class="card-text">{{ twit.twit }}</p>
           </div>
@@ -53,27 +53,4 @@
         </div>
       {% endfor %}
 </div>
-{% endblock %}
-
-
-
-
-
-
-
-
-{% block create_twit %}
-<form action="{% url 'account:tw' %}" method="POST" enctype="multipart/form-data">
-			{% csrf_token %}
-			<div class="container my-font p-4">
-				<div class="col-12 my-4">
-					{{ form.twit|attr:"placeholder:چیزی تویت کنید"|as_crispy_field }}
-				</div>
-				<div class="col-12 my-4">
-					{{ form.img|as_crispy_field }}
-					<label class="btn-primary p-2 text-white border border-dark border-3 rounded rounded-5" for="{{ form.img.auto_id }}"><i class="far fa-images fa-lg"></i></label>
-					<button class="btn-primary p-2 text-white border border-dark border-3 rounded rounded-5">توییت</button>
-				</div>
-			</div>
-</form>	
 {% endblock %}

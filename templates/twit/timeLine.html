@@ -7,14 +7,14 @@
         <div class="card my-3 bg-dark text-white">
           <div class="card-body">
             <div class="profile mb-2">
-              <img src="{{ user.profile_photo.url }}" style="height: 50px; width: 50px;" class="rounded-circle" alt="...">
-              <h3 class="d-inline mx-3">
-                {% if user.get_full_name %}
-                  {{ user.get_full_name }}
+              <img src="{{ twit.author.profile_photo.url }}" style="height: 50px; width: 50px;" class="rounded-circle" alt="...">
+              <a href="{% url 'account:profile' twit.author.username %}" style="text-decoration:none;"><h3 class="d-inline mx-3">
+                {% if twit.author.get_full_name %}
+                  {{ twit.author.get_full_name }}
                 {% else %}
-                  {{ user.username }}
+                  {{ twit.author.username }}
                 {% endif %}
-              </h3>
+              </h3></a>
             </div>
             <p class="card-text">{{ twit.twit }}</p>
           </div>

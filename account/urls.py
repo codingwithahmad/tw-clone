@@ -1,6 +1,6 @@
 from django.contrib.auth import views
 from django.urls import path
-from .views import Twit
+from .views import Twit, Profile
 
 app_name = "account"
 
@@ -21,4 +21,5 @@ urlpatterns = [
 
 urlpatterns += [
     path('twit', Twit.as_view(), name='tw'),
+    path('<slug:username>/', Profile.as_view(), name="profile")
 ]

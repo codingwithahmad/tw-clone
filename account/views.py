@@ -1,7 +1,8 @@
-from django.shortcuts import render
-from django.views.generic.edit import CreateView
+from django.shortcuts import render, get_object_or_404
+from django.views.generic import CreateView, ListView
 from twit.models import Twit
 from .forms import MyForm
+from .models import User
 from .mixins import FormValid
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
@@ -20,7 +21,12 @@ class Twit(CreateView):
 		tw.author = self.request.user
 		tw.save()
 
-		return HttpResponseRedirect(reverse_lazy('twits:TimeLine'))
+		# return HttpResponseRedirect(reverse_lazy('account:tw'))
+
+	def get_context_data(self, **kwargs):
+		context = super(Twit, self).get_context_data(**kwargs)
+		context['object_list'] = self.request.user.user_twit.all()
+		return context
 
 class Login(LoginView):
 	def get_success_url(self):
@@ -28,3 +34,21 @@ class Login(LoginView):
 
 		if user.is_authenticated:
 			return reverse_lazy('twits:TimeLine')
+
+class Profile(ListView):
+	template_name = "registration/profile.html"
+
+
+
+	def get_queryset(self):
+		global author
+		username = self.kwargs.get("username")
+		author = get_object_or_404(User, username=username)
+		return author.user_twit.all()
+
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['author'] = author
+		print(author)
+		return context
+
