@@ -32,3 +32,7 @@ This is a social media clone by django
 - [x] Add Logout option at create_twit.html for account and twits apps
 - [x] Add password forget and it's html files and urls
 - [x] Add bio field to user model and set it for create_twit.html at account app
+- [x] Add Profile view in account/views.py
+- [x] create base_profile.html 
+- [x] create profile.html for Profile view
+- [x] set profile.html and create_twit.html for extends from base_profile.html
