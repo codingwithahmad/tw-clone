@@ -11,6 +11,7 @@ class TimeLine(LoginRequiredMixin, ListView):
 	model = Twit
 	template_name = "twit/timeLine.html"
 	context_name = "twits"
+	ordering = ['-created']
 
 	def post(self, request, *args, **kwargs):
 		self.form = MyForm(request.POST, request.FILES)

@@ -21,11 +21,11 @@ class Twit(CreateView):
 		tw.author = self.request.user
 		tw.save()
 
-		# return HttpResponseRedirect(reverse_lazy('account:tw'))
+		return HttpResponseRedirect(reverse_lazy('account:tw'))
 
 	def get_context_data(self, **kwargs):
 		context = super(Twit, self).get_context_data(**kwargs)
-		context['object_list'] = self.request.user.user_twit.all()
+		context['object_list'] = self.request.user.user_twit.all().order_by('-created')
 		return context
 
 class Login(LoginView):

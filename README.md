@@ -33,6 +33,8 @@ This is a social media clone by django
 - [x] Add password forget and it's html files and urls
 - [x] Add bio field to user model and set it for create_twit.html at account app
 - [x] Add Profile view in account/views.py
-- [x] create base_profile.html 
-- [x] create profile.html for Profile view
-- [x] set profile.html and create_twit.html for extends from base_profile.html
+- [x] Create base_profile.html 
+- [x] Create profile.html for Profile view
+- [x] Set profile.html and create_twit.html for extends from base_profile.html
+- [x] Fix reverse bug in account/twit page
+- [x] Change ordering in TimeLine and Twit views
