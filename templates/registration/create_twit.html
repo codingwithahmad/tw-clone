@@ -56,24 +56,3 @@
 {% endblock %}
 
 
-
-
-
-
-
-
-{% block create_twit %}
-<form action="{% url 'account:tw' %}" method="POST" enctype="multipart/form-data">
-			{% csrf_token %}
-			<div class="container my-font p-4">
-				<div class="col-12 my-4">
-					{{ form.twit|attr:"placeholder:چیزی تویت کنید"|as_crispy_field }}
-				</div>
-				<div class="col-12 my-4">
-					{{ form.img|as_crispy_field }}
-					<label class="btn-primary p-2 text-white border border-dark border-3 rounded rounded-5" for="{{ form.img.auto_id }}"><i class="far fa-images fa-lg"></i></label>
-					<button class="btn-primary p-2 text-white border border-dark border-3 rounded rounded-5">توییت</button>
-				</div>
-			</div>
-</form>	
-{% endblock %}

@@ -38,3 +38,8 @@ This is a social media clone by django
 - [x] Set profile.html and create_twit.html for extends from base_profile.html
 - [x] Fix reverse bug in account/twit page
 - [x] Change ordering in TimeLine and Twit views
+- [x] Delete Twit view from account.views and it's url from account.urls
+- [x] Create following inclusion tag in twit/template_tags/base_tags.py
+- [x] Add post def to Profiel view at account.views
+- [x] Add follow.html by following base tag to base_profile.html
+- [x] Set number of twit in follow.html

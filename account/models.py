@@ -8,3 +8,10 @@ class User(AbstractUser):
 
 	bio = models.TextField(max_length=280, null=True, verbose_name="بیوگرافی")
 
+
+class UserFollowing(models.Model):
+	user_id = models.ForeignKey(User, related_name="following", on_delete=models.CASCADE)
+
+	following_user_id = models.ForeignKey(User, related_name="followers", on_delete=models.CASCADE)
+
+	created = models.DateTimeField(auto_now_add=True)

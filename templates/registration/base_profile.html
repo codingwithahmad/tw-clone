@@ -1,4 +1,6 @@
 {% load static %}
+{% load base_tags %}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +12,12 @@
 </head>
 <body class="bg-dark text-white">
 	{% block user_info %}{% endblock %}
+	{% following %}
+	{% if author == user %}
+		{% twit_bar %}
+	{% endif %}
 	{% block create_twit %}{% endblock %}
 	{% block main %}{% endblock %}
 </body>
 </html>
+	
