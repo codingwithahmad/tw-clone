@@ -32,6 +32,9 @@ This is a social media clone by django
 - [x] Add Logout option at create_twit.html for account and twits apps
 - [x] Add password forget and it's html files and urls
 - [x] Add bio field to user model and set it for create_twit.html at account app
+
+# Following and Followrs section
+
 - [x] Add Profile view in account/views.py
 - [x] Create base_profile.html 
 - [x] Create profile.html for Profile view
@@ -43,3 +46,7 @@ This is a social media clone by django
 - [x] Add post def to Profiel view at account.views
 - [x] Add follow.html by following base tag to base_profile.html
 - [x] Set number of twit in follow.html
+- [x] Change following inclusion tag name to follow_info and follow.html to follow_info.html
+- [x] Add following inclusion tag to base_tags.py
+- [x] Add UserFollowing model to account/models.py
+- [x] Change post def in Profile view to handel post req 

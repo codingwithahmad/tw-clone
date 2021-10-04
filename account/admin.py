@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import User
+from .models import User, UserFollowing
 from django.contrib.auth.admin import UserAdmin
 # Register your models here.
 
@@ -15,3 +15,4 @@ UserAdmin.fieldsets[2][1]['fields'] = ('is_active',
 
 
 admin.site.register(User, UserAdmin)
+admin.site.register(UserFollowing)

@@ -7,6 +7,7 @@ from .mixins import FormValid
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from django.contrib.auth.views import LoginView
+from django.db.models import Q
 # Create your views here.
 
 # class Twit(CreateView):
@@ -45,14 +46,6 @@ class Profile(ListView):
 	template_name = "registration/profile.html"
 
 
-	def post(self, request, *args, **kwargs):
-		self.form = MyForm(request.POST, request.FILES)
-		twit = self.form.save(commit=False)
-		twit.author = request.user
-		twit.save()
-
-		return HttpResponseRedirect(reverse_lazy('account:profile', kwargs={'username': author.username}))
-
 	def get_queryset(self):
 		global author
 		username = self.kwargs.get("username")
@@ -64,6 +57,27 @@ class Profile(ListView):
 		context['author'] = author
 		return context
 
+	def post(self, request, *args, **kwargs):
+		
+		username = self.kwargs.get("username")
+		author = get_object_or_404(User, username=username)
+
+
+		if author == request.user:
+			self.twForm = MyForm(request.POST, request.FILES)
+			twit = self.twForm.save(commit=False)
+			twit.author = request.user
+			twit.save()
+		else:
+			following = FollowForm(request.POST).save(commit=False)
+			if not UserFollowing.objects.filter(Q(user_id=request.user) & Q(following_user_id=author)).exists():
+				following.user_id = request.user
+				following.following_user_id = author
+				following.save()
+			else:
+				UserFollowing.objects.filter(Q(user_id=request.user) & Q(following_user_id=author)).delete()
+
+		return HttpResponseRedirect(reverse_lazy('account:profile', kwargs={'username': author.username}))
 
 class Follow(CreateView):
 	model = UserFollowing
