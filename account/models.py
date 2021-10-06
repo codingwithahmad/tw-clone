@@ -4,6 +4,8 @@ from django.contrib.auth.models import AbstractUser
 # Create your models here.
 
 class User(AbstractUser):
+	email = models.EmailField(unique=True, verbose_name="ایمیل")
+
 	profile_photo = models.ImageField(upload_to='images/profile_photo', verbose_name="عکس پروفایل", default="default.jpg")
 
 	bio = models.TextField(max_length=280, null=True, verbose_name="بیوگرافی")

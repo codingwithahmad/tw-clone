@@ -14,8 +14,8 @@
     <div class="wrapper fadeInDown">
         <div id="formContent">
           <!-- Tabs Titles -->
-          <h2>ورود </h2>
-          <h2><a href="{% url 'account:register' %}">ثبت نام</a></h2>
+          <h2 class="active"> ورود </h2>
+          <h2 class="inactive underlineHover">ثبت نام </h2>
 
           <!-- Icon -->
           <div class="fadeIn first">
@@ -26,13 +26,17 @@
           <form method="POST">
             {% csrf_token %}
             {{ form.username|attr:"placeholder:نام کاربری" }}
-            {{ form.password|attr:"placeholder:رمز عبور" }}
-            <input type="submit" class="fadeIn fourth" value="ورود">
+            {{ form.email|attr:"placeholder:ایمیل" }}
+            {{ form.password1|attr:"placeholder:رمز عبور" }}
+            {{ form.password2|attr:"placeholder:تکرار رمز عبور" }}
+            <input type="submit" class="fadeIn fourth" value="ثبت نام">
           </form>
 
           <!-- Remind Passowrd -->
           <div id="formFooter">
-            <a class="underlineHover" href="{% url 'account:password_reset' %}">آیار رمز عبور خود را فراموش کرده اید؟</a>
+            <a class="underlineHover" href="{% url 'account:password_reset' %}">آیار رمز عبور خود را فراموش کرده اید؟</a><span>
+              <a class="underlineHover" href="{% url 'account:login' %}">ورود به حساب کاربری</a>
+            </span>
           </div>
 
     	</div>

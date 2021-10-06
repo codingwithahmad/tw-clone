@@ -1,11 +1,12 @@
+
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import CreateView, ListView
 from twit.models import Twit
-from .forms import MyForm, FollowForm
+from .forms import MyForm, FollowForm, SignUpForm
 from .models import User, UserFollowing
 from .mixins import FormValid
 from django.urls import reverse_lazy
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.views import LoginView
 from django.db.models import Q
 # Create your views here.
@@ -79,7 +80,59 @@ class Profile(ListView):
 
 		return HttpResponseRedirect(reverse_lazy('account:profile', kwargs={'username': author.username}))
 
-class Follow(CreateView):
-	model = UserFollowing
-	form_class = FollowForm
+
+
+
+
+from django.contrib.auth import login, authenticate
+from .tokens import account_activation_token
+from .forms import SignUpForm
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.encoding import force_bytes, force_text
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.template.loader import render_to_string
+from django.core.mail import EmailMessage
+
+
+
+
 	
+class Registration(CreateView):
+	form_class = SignUpForm
+	template_name = 'registration/register.html'
+
+
+	def form_valid(self, form):
+		user = form.save(commit=False)
+		user.is_active = False
+		user.save()
+		current_site = get_current_site(self.request)
+		mail_subject = "فعال سازی حساب کاربری"
+		message = render_to_string('registration/activate_account.html', {
+			'user': user,
+			'domain': current_site.domain,
+			'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+			'token': account_activation_token.make_token(user)
+		})
+		
+		to_email = form.cleaned_data.get('email')
+		email = EmailMessage(
+			mail_subject, message, to=[to_email]
+		)
+
+		email.send()
+		return HttpResponse('لینک فعال سازی به ایمیل شما ارسال شد <a href="account/login" >ورود</a>')
+
+
+def activate(request, uidb64, token):
+    try:
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+    if user is not None and account_activation_token.check_token(user, token):
+        user.is_active = True
+        user.save()
+        return HttpResponse("حساب کاربری شما فعال شد. برای ورود <a href='account/login' > کلیک کنید.</a>")
+    else:
+        return HttpResponse('لینک فعال سازی نامعتبر است. <a href="account/register" > دوباره امتحان کنید </a>')

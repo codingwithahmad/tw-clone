@@ -50,3 +50,10 @@ This is a social media clone by django
 - [x] Add following inclusion tag to base_tags.py
 - [x] Add UserFollowing model to account/models.py
 - [x] Change post def in Profile view to handel post req 
+
+
+# Register 
+- [x] Add register.html and activate_account.html 
+- [x] Add Registration and activate views in account.views
+- [ ] Fix new user twit don't showing in timeline
+- [ ] Fix Redirect to login view by active account success link

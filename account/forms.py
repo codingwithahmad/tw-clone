@@ -1,8 +1,9 @@
 from crispy_forms.helper import FormHelper
 from django import forms
 from twit.models import Twit
-from .models import UserFollowing
+from .models import UserFollowing, User
 from django.urls import reverse_lazy, reverse
+from django.contrib.auth.forms import UserCreationForm
 
 class MyForm(forms.ModelForm):
 
@@ -38,3 +39,10 @@ class FollowForm(forms.ModelForm):
 	class Meta:
 		model = UserFollowing
 		fields = []
+
+class SignUpForm(UserCreationForm):
+	email = forms.EmailField(max_length=200)
+
+	class Meta:
+		model = User
+		fields = ['username', 'email', 'password1', 'password2']
