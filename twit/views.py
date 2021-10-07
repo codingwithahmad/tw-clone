@@ -11,11 +11,16 @@ from django.db.models import Q
 class TimeLine(LoginRequiredMixin, ListView):
 	template_name = "twit/timeLine.html"
 	context_name = "twits"
-
+	# queryset = Twit.objects.all()
+	
 	def get_queryset(self):
 		following_list = self.request.user.following.all()
-		for f in following_list:
-				return Twit.objects.filter(Q(author=self.request.user) | Q(author=f.following_user_id)).order_by('-created')
+		print(following_list)
+		if following_list:
+			for f in following_list:
+					return Twit.objects.filter(Q(author=self.request.user) | Q(author=f.following_user_id)).order_by('-created')
+		else:
+			return Twit.objects.filter(author=self.request.user)			
 
 	def post(self, request, *args, **kwargs):
 		self.form = MyForm(request.POST, request.FILES)

@@ -55,5 +55,5 @@ This is a social media clone by django
 # Register 
 - [x] Add register.html and activate_account.html 
 - [x] Add Registration and activate views in account.views
-- [ ] Fix new user twit don't showing in timeline
+- [x] Fix new user twit don't showing in timeline
 - [ ] Fix Redirect to login view by active account success link
