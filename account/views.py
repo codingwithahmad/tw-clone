@@ -1,4 +1,4 @@
-
+from django.template.response import TemplateResponse
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import CreateView, ListView
 from twit.models import Twit
@@ -121,7 +121,7 @@ class Registration(CreateView):
 		)
 
 		email.send()
-		return HttpResponse('لینک فعال سازی به ایمیل شما ارسال شد <a href="account/login" >ورود</a>')
+		return TemplateResponse(self.request, 'registration/activate_link_send.html', {})
 
 
 def activate(request, uidb64, token):
@@ -133,6 +133,6 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
-        return HttpResponse("حساب کاربری شما فعال شد. برای ورود <a href='account/login' > کلیک کنید.</a>")
+        return TemplateResponse(request, 'registration/activate_confirm.html', {})
     else:
         return HttpResponse('لینک فعال سازی نامعتبر است. <a href="account/register" > دوباره امتحان کنید </a>')
