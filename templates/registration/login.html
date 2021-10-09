@@ -26,7 +26,21 @@
           <form method="POST">
             {% csrf_token %}
             {{ form.username|attr:"placeholder:نام کاربری" }}
+            {% if form.username.errors %}
+              <div class="errors">
+                {% for error in form.username.errors %}
+                  <span>{{ error }}</span>
+                {% endfor %}
+              </div>
+            {% endif %}
             {{ form.password|attr:"placeholder:رمز عبور" }}
+            {% if form.password.errors %}
+              <div class="errors">
+                {% for error in form.password.errors %}
+                  <span>{{ error }}</span>
+                {% endfor %}
+              </div>
+            {% endif %}
             <input type="submit" class="fadeIn fourth" value="ورود">
           </form>
 

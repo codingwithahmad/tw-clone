@@ -4,6 +4,10 @@ from twit.models import Twit
 from .models import UserFollowing, User
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth.forms import UserCreationForm
+# for exceptions
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext, gettext_lazy as _
+
 
 class MyForm(forms.ModelForm):
 
@@ -43,6 +47,11 @@ class FollowForm(forms.ModelForm):
 class SignUpForm(UserCreationForm):
 	email = forms.EmailField(max_length=200)
 
+	error_messages = {
+		'password_mismatch': _('The two password fields didn’t match.'),
+		'email_exists': _('ایمیل وارد شده قبلا در سایت ثبت شده است،لطفا از یک ایمیل معتبر استفاده کنید.')
+	}
+	
 	class Meta:
 		model = User
 		fields = ['username', 'email', 'password1', 'password2']

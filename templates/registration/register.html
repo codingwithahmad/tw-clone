@@ -4,14 +4,19 @@
 {% block main %}
 
 
-      {% if form.non_field_errors %}
-        <div class="errors container">
-          {% for error in form.non_field_errors %}
-          <span>{{ error }}</span>
-          {% endfor %}
-        </div>
-      {% endif %}
-    <div class="wrapper fadeInDown">
+
+
+{% if form.non_field_errors %}
+  <div class="non-field-errors">
+    {% for err in form.non_field_errors %}
+      <p class="form-error">{{ err }}</p>
+    {% endfor %}
+  </div>
+{% endif %}
+
+
+
+<div class="wrapper fadeInDown">
         <div id="formContent">
           <!-- Tabs Titles -->
           <h2 class="active"> ورود </h2>
@@ -23,12 +28,32 @@
           </div>
 
           <!-- Login Form -->
-          <form method="POST">
-            {% csrf_token %}
+          <form method="POST">{% csrf_token %}
             {{ form.username|attr:"placeholder:نام کاربری" }}
             {{ form.email|attr:"placeholder:ایمیل" }}
+            {% if form.username.errors %}
+              <div class="errors">
+                {% for error in form.username.errors %}
+                  <span>{{ error }}</span>
+                {% endfor %}
+              </div>
+            {% endif %}
             {{ form.password1|attr:"placeholder:رمز عبور" }}
+            {% if form.password1.errors %}
+              <div class="errors">
+                {% for error in form.password1.errors %}
+                  <span>{{ error }}</span>
+                {% endfor %}
+              </div>
+            {% endif %}
             {{ form.password2|attr:"placeholder:تکرار رمز عبور" }}
+            {% if form.password2.errors %}
+              <div class="errors">
+                {% for error in form.password2.errors %}
+                  <span>{{ error }}</span>
+                {% endfor %}
+              </div>
+            {% endif %}
             <input type="submit" class="fadeIn fourth" value="ثبت نام">
           </form>
 
