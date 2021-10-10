@@ -1,0 +1,91 @@
+{% extends 'registration/base_profile.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block main %}
+
+
+      {% if form.non_field_errors %}
+        <div class="errors container">
+          {% for error in form.non_field_errors %}
+          <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+      {% endif %}
+    <div class="container">
+        <div class="m-4">
+          <!-- Tabs Titles -->
+
+          <!-- Icon -->
+          <div class="fadeIn first">
+            
+          </div>
+
+          <!-- Login Form -->
+          <form method="POST">
+            {% csrf_token %}
+            <div class="col-12 mb-4">
+              {{ form.username|as_crispy_field }}
+              {% if form.username.errors %}
+                <div class="errors">
+                  {% for err in form.username.errors %}
+                    <p>{{ error }}</p>
+                  {% endfor%}
+                </div>
+              {% endif %}
+            </div>
+            <div class="col-12 mb-4">
+              {{ form.first_name|as_crispy_field }}
+              {% if form.first_name.errors %}
+                <div class="errors">
+                  {% for err in form.first_name.errors %}
+                    <p>{{ error }}</p>
+                  {% endfor%}
+                </div>
+              {% endif %}
+            </div>
+
+            <div class="col-12 mb-4">
+              {{ form.last_name|as_crispy_field }}
+              {% if form.last_name.errors %}
+                <div class="errors">
+                  {% for err in form.last_name.errors %}
+                    <p>{{ error }}</p>
+                  {% endfor%}
+                </div>
+              {% endif %}
+            </div>
+
+            <div class="col-12 mb-4">
+              {{ form.bio|as_crispy_field }}
+              {% if form.bio.errors %}
+                <div class="errors">
+                  {% for err in form.bio.errors %}
+                    <p>{{ error }}</p>
+                  {% endfor%}
+                </div>
+              {% endif %}
+            </div>
+
+            <div class="col-12 mb-4">
+              {{ form.profile_photo|as_crispy_field }}
+              {% if form.profile_photo.errors %}
+                <div class="errors">
+                  {% for err in form.profile_photo.errors %}
+                    <p>{{ error }}</p>
+                  {% endfor%}
+                </div>
+              {% endif %}
+            </div>
+            <input type="submit" class="btn btn-primary" value="ویرایش اطلاعات">
+            <span class="float-start"><a href="{% url 'account:profile' user.username %}" style="text-decoration: none; font-weight: bold;" class="text-danger"><i class="fas fa-sign-out-alt fa-lg m-2 text-danger"></i>پروفایل</a></span>
+          </form>
+
+          <!-- Remind Passowrd -->
+          <div id="formFooter">
+            <a class="underlineHover" href="{% url 'account:password_reset' %}"></a>
+          </div>
+
+    	</div>
+    </div>
+{% endblock %}

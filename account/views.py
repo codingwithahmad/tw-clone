@@ -1,6 +1,6 @@
 from django.template.response import TemplateResponse
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, ListView, UpdateView
 from twit.models import Twit
 from .forms import MyForm, FollowForm, SignUpForm
 from .models import User, UserFollowing
@@ -80,7 +80,10 @@ class Profile(ListView):
 
 		return HttpResponseRedirect(reverse_lazy('account:profile', kwargs={'username': author.username}))
 
-
+class EditProfile(UpdateView):
+	model = User
+	fields = '__all__'
+	template_name = 'registration/edit_profile.html'
 
 
 

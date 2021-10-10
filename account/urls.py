@@ -1,6 +1,6 @@
 from django.contrib.auth import views
 from django.urls import path
-from .views import Profile, Registration, activate
+from .views import Profile, Registration, activate, EditProfile
 
 app_name = "account"
 
@@ -25,4 +25,5 @@ urlpatterns = [
 urlpatterns += [
     # path('twit', Twit.as_view(), name='tw'),
     path('<slug:username>/', Profile.as_view(), name="profile"),
+    path('update/<int:pk>/', EditProfile.as_view(), name="edit_profile"),
 ]

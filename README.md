@@ -59,4 +59,8 @@ This is a social media clone by django
 - [x] Fix Redirect to login view by active account success link
 - [x] Fix Register.html template showing error's
 - [x] Fix default profile photo
+- [x] Create Edit profile button in profile.html
+- [x] Create Edit profiel page
+- [ ] update user information by edit_profile.html form
+
  

@@ -12,11 +12,14 @@
 </head>
 <body class="bg-dark text-white">
 	{% block user_info %}{% endblock %}
-	{% follow_info %}
-	{% if user == author %}
-		{% twit_bar %}
-	{% else %}
-		{% following %}
+	{% if author %}
+		{% follow_info %}
+		{% if user == author %}
+			{% include "registration/partial/edit_profile_button.html" %}
+			{% twit_bar %}
+		{% else %}
+			{% following %}
+		{% endif %}
 	{% endif %}
 	{% block create_twit %}{% endblock %}
 	{% block main %}{% endblock %}
