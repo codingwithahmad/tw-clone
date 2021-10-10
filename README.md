@@ -58,5 +58,5 @@ This is a social media clone by django
 - [x] Fix new user twit don't showing in timeline
 - [x] Fix Redirect to login view by active account success link
 - [x] Fix Register.html template showing error's
-- [ ] Fix default profile photo
+- [x] Fix default profile photo
  

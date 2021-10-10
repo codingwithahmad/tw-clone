@@ -1,14 +1,27 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
+
+
 # Create your models here.
+
+
+
 
 class User(AbstractUser):
 	email = models.EmailField(unique=True, verbose_name="ایمیل")
 
-	profile_photo = models.ImageField(upload_to='images/profile_photo', verbose_name="عکس پروفایل", default="default.jpg")
+	profile_photo = models.ImageField(upload_to='images/profile_photo', verbose_name="عکس پروفایل", default="media/images/default.jpg")
 
 	bio = models.TextField(max_length=280, null=True, verbose_name="بیوگرافی")
+
+	@property
+	def avatar(self):
+		if self.profile_photo:
+			return self.profile_photo.url
+		else:
+			return 'images/default.jpg'
+	
 
 
 class UserFollowing(models.Model):

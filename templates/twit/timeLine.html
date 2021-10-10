@@ -3,7 +3,7 @@
 
 {% block user_info %}
 <div class="profile container my-font my-4 mb-2">
-  <img src="{{ user.profile_photo.url }}" alt="..." class="profile-photo">
+  <img src="{{ user.avatar }}" class="profile-photo">
   <h3 class="d-inline mx-3 my-font">
     {% if user.get_full_name %}
     <a href="{% url 'account:profile' user.username %}" style="text-decoration:none;">{{ user.get_full_name }}</a>

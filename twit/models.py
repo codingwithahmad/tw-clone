@@ -10,6 +10,7 @@ class Twit(models.Model):
 	author = models.ForeignKey(User, related_name="user_twit", verbose_name="نویسنده", on_delete=models.CASCADE)
 	created = models.DateTimeField(default=timezone.now, verbose_name="زمان انتشار")
 
+
 	def __str__(self):
 		return "{} - {}".format(self.author, self.twit)
 
