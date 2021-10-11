@@ -82,8 +82,12 @@ class Profile(ListView):
 
 class EditProfile(UpdateView):
 	model = User
-	fields = '__all__'
+	fields = ['username', 'first_name', 'last_name', 'bio', 'profile_photo']
 	template_name = 'registration/edit_profile.html'
+
+	def get_success_url(self):
+		return reverse_lazy('account:profile', kwargs={'username': self.request.user.username})
+
 
 
 
