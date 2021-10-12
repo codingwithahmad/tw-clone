@@ -1,7 +1,9 @@
 from django.db import models
 from account.models import User
 from django.utils import timezone
-
+from django.contrib.contenttypes.fields import GenericRelation
+from comment.models import Comment
+from django.urls import reverse_lazy
 # Create your models here.
 
 class Twit(models.Model):
@@ -9,7 +11,7 @@ class Twit(models.Model):
 	img = models.ImageField(upload_to='images', blank=True, null=True)
 	author = models.ForeignKey(User, related_name="user_twit", verbose_name="نویسنده", on_delete=models.CASCADE)
 	created = models.DateTimeField(default=timezone.now, verbose_name="زمان انتشار")
-
+	comments = GenericRelation(Comment)
 
 	def __str__(self):
 		return "{} - {}".format(self.author, self.twit)

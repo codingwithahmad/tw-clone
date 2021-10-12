@@ -1,11 +1,13 @@
 from django.shortcuts import render
-from django.views.generic.list import ListView
+from django.views.generic import ListView, DetailView
 from .models import Twit
 from account.forms import MyForm
 from django.urls import reverse_lazy
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
+from .models import Twit
+from django.shortcuts import get_object_or_404
 # Create your views here.
 
 class TimeLine(LoginRequiredMixin, ListView):
@@ -30,3 +32,14 @@ class TimeLine(LoginRequiredMixin, ListView):
 
 		return HttpResponseRedirect(reverse_lazy('twits:TimeLine'))
 
+class TwitDetail(DetailView):
+	template_name = 'twit/twit.html'
+	context_object_name = "twit"
+
+
+
+	def get_object(self):
+		pk = self.kwargs.get('pk')
+		twit = get_object_or_404(Twit, pk=pk)
+
+		return twit

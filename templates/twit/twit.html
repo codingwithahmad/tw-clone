@@ -1,0 +1,29 @@
+{% extends "twit/base.html" %}
+{% load comment_tags %}
+
+{% block user_info %}
+<div class="profile container my-font my-4 mb-2">
+  <img src="{{ twit.author.avatar }}" class="profile-photo">
+  <h3 class="d-inline mx-3 my-font">
+    {% if twit.author.get_full_name %}
+    <a href="{% url 'account:profile' twit.author.username %}" style="text-decoration:none;">{{ twit.author.get_full_name }}</a>
+    {% else %}
+    <a href="{% url 'account:profile' twit.author.username %}" style="text-decoration:none;">{{ twit.author.username }}</a>
+    {% endif %}
+  </h3>
+  <span class="float-start"><a href="{% url 'twits:TimeLine' %}" style="text-decoration: none; font-weight: bold;" class="text-primary">خانه<i class="fas fa-home fa-lg m-2 text-primary"></i></a></span>
+</div>
+{% endblock %}
+
+{% block twit_bar %}
+	<div class="container my-font p-4">
+		<h3 class="mb-4 text-right"> {{ twit.twit }} </h3>
+    {% if twit.img %}
+          <div class="card p-4 border border-dark  border-3 rounded-3" style="height: 50vh; overflow: auto;">
+            <img class="card-img-below img-fluid center" style="display: block;" src="{{ twit.img.url }}">
+          </div>
+    {% endif %}
+    {% render_comments twit request %}
+    {% include_bootstrap %}
+	</div>
+{% endblock %}

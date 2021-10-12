@@ -22,6 +22,7 @@ urlpatterns = [
     path('', include('twit.urls')),
     path('account/', include('account.urls')),
     path('', include("django.contrib.auth.urls")),
+    path('comment/', include('comment.urls')),
 ]
 
 from django.conf import settings

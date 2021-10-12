@@ -1,4 +1,5 @@
 {% extends "twit/base.html" %}
+{% load base_tags %}
 
 
 {% block user_info %}
@@ -15,10 +16,15 @@
 </div>
 {% endblock %}
 
+{% block twit_bar %}
+  {% twit_bar %}
+{% endblock %}
+
+
 {% block timeLine %}
 <div class="container my-font">
       {% for twit in object_list %}
-        <div class="card my-3 bg-dark text-white">
+        <div class="card my-3 bg-dark text-white border border-3 border-dark">
           <div class="card-body">
             <div class="profile mb-2">
               <img src="{{ twit.author.profile_photo.url }}" style="height: 50px; width: 50px;" class="rounded-circle" alt="...">
@@ -37,6 +43,10 @@
             <img class="card-img-below img-fluid center" style="display: block;" src="{{ twit.img.url }}">
           </div>
           {% endif %}
+          <span class="d-flex justify-content-around"><a href="{% url 'twits:TwitDetail' twit.pk %}"><i class="far fa-comment"></i></a>
+          <i class="fas fa-retweet text-primary"></i>
+          <i class="far fa-heart text-primary"></i>
+        </span>
         </div>
       {% endfor %}
 </div>

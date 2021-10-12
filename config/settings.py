@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'twit.apps.TwitConfig',
     'widget_tweaks',
     'crispy_forms',
+    'comment',
 ]
 
 MIDDLEWARE = [
