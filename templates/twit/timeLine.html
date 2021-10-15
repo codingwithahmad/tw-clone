@@ -4,7 +4,7 @@
 
 {% block user_info %}
 <div class="profile container my-font my-4 mb-2">
-  <img src="{{ user.avatar }}" class="profile-photo">
+  <img src="{{ user.profile_photo.url }}" class="profile-photo">
   <h3 class="d-inline mx-3 my-font">
     {% if user.get_full_name %}
     <a href="{% url 'account:profile' user.username %}" style="text-decoration:none;">{{ user.get_full_name }}</a>
@@ -43,10 +43,11 @@
             <img class="card-img-below img-fluid center" style="display: block;" src="{{ twit.img.url }}">
           </div>
           {% endif %}
-          <span class="d-flex justify-content-around"><a href="{% url 'twits:TwitDetail' twit.pk %}"><i class="far fa-comment"></i></a>
-          <i class="fas fa-retweet text-primary"></i>
-          <i class="far fa-heart text-primary"></i>
-        </span>
+          <span class="d-flex justify-content-around">
+            <a href="{% url 'twits:TwitDetail' twit.pk %}"><i class="far fa-comment"></i></a>
+            <i class="fas fa-retweet text-primary"></i>
+            {% like request twit.like_count twit.pk request.resolver_match.url_name request.resolver_match.app_names.0 %}
+          </span>
         </div>
       {% endfor %}
 </div>

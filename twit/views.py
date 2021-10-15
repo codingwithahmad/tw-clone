@@ -1,13 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView, DetailView
-from .models import Twit
+from .models import Twit, Likes
 from account.forms import MyForm
 from django.urls import reverse_lazy
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
-from .models import Twit
-from django.shortcuts import get_object_or_404
 # Create your views here.
 
 class TimeLine(LoginRequiredMixin, ListView):
@@ -25,12 +23,12 @@ class TimeLine(LoginRequiredMixin, ListView):
 			return Twit.objects.filter(author=self.request.user)			
 
 	def post(self, request, *args, **kwargs):
-		self.form = MyForm(request.POST, request.FILES)
-		twit = self.form.save(commit=False)
-		twit.author = request.user
-		twit.save()
+			self.form = MyForm(request.POST, request.FILES)
+			twit = self.form.save(commit=False)
+			twit.author = request.user
+			twit.save()
 
-		return HttpResponseRedirect(reverse_lazy('twits:TimeLine'))
+			return HttpResponseRedirect(reverse_lazy('twits:TimeLine'))
 
 class TwitDetail(DetailView):
 	template_name = 'twit/twit.html'
@@ -43,3 +41,18 @@ class TwitDetail(DetailView):
 		twit = get_object_or_404(Twit, pk=pk)
 
 		return twit
+
+def like(request, app_name, url_name, pk):
+	print(request.resolver_match.url_name)
+	print(request.resolver_match.app_names[0])
+	user = request.user
+	twit = get_object_or_404(Twit, pk=pk)
+	if Likes.objects.filter(Q(users=user) & Q(twits=twit)).exists():
+		Likes.objects.filter(Q(users=user) & Q(twits=twit)).delete()
+	else:
+		t_like = Likes(users=user, twits=twit)
+		t_like.save()
+	link = "{}:{}".format(app_name, url_name)
+
+	return redirect(link)
+

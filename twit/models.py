@@ -13,9 +13,30 @@ class Twit(models.Model):
 	created = models.DateTimeField(default=timezone.now, verbose_name="زمان انتشار")
 	comments = GenericRelation(Comment)
 
+	@property
+	def like_count(self):
+		return self.likes.all().count()
+	
+	
 	def __str__(self):
 		return "{} - {}".format(self.author, self.twit)
 
 	class Meta:
 		verbose_name = "توییت"
 		verbose_name_plural = "توییت ها"
+
+
+class Likes(models.Model):
+	users = models.ForeignKey(User, related_name="likes", on_delete=models.CASCADE)
+
+	twits = models.ForeignKey(Twit, related_name="likes", on_delete=models.CASCADE)
+
+	created = models.DateTimeField(auto_now_add=True)
+
+	
+		
+	
+
+
+
+	

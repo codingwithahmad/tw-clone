@@ -15,14 +15,7 @@ class User(AbstractUser):
 
 	bio = models.TextField(max_length=280, null=True, verbose_name="بیوگرافی")
 
-	@property
-	def avatar(self):
-		if self.profile_photo:
-			return self.profile_photo.url
-		else:
-			return 'images/default.jpg'
 	
-
 
 class UserFollowing(models.Model):
 	user_id = models.ForeignKey(User, related_name="following", on_delete=models.CASCADE)

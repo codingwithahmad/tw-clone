@@ -63,4 +63,19 @@ This is a social media clone by django
 - [x] Create Edit profiel page
 - [x] update user information by edit_profile.html form
 
+# Twit
+- [x] Comment
+
+# Like section
+- [x] Add likes model in twit.models
+- [x] Add like includion tag to base_tags.py in twit/templatetags
+- [x] Add like.html to templates/twit/partial
+- [x] Add like tag to timeline block in timeline.html
+- [ ] Add Ajax and JQuery 
+
+
+# Retweet
+- [ ] Retweet
+
+
  

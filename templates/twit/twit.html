@@ -3,7 +3,7 @@
 
 {% block user_info %}
 <div class="profile container my-font my-4 mb-2">
-  <img src="{{ twit.author.avatar }}" class="profile-photo">
+  <img src="{{ twit.author.profile_photo.url }}" class="profile-photo">
   <h3 class="d-inline mx-3 my-font">
     {% if twit.author.get_full_name %}
     <a href="{% url 'account:profile' twit.author.username %}" style="text-decoration:none;">{{ twit.author.get_full_name }}</a>

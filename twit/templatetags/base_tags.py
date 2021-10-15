@@ -42,3 +42,13 @@ def following(context):
 
 	if author != user:
 		return {'follow_form': FollowForm, 'btn_name': button_name }
+
+@register.inclusion_tag('twit/partial/like.html')
+def like(request, count, pk, url_name, app_name):
+	return {
+		"request": request,
+		"pk": pk,
+		"app_name": app_name,
+		"url_name": url_name,
+		"count": count,
+	}
