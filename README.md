@@ -71,7 +71,8 @@ This is a social media clone by django
 - [x] Add like includion tag to base_tags.py in twit/templatetags
 - [x] Add like.html to templates/twit/partial
 - [x] Add like tag to timeline block in timeline.html
-- [ ] Add Ajax and JQuery 
+- [x] Add Ajax and JQuery
+- [x] Fix refresh likes number bug 
 
 
 # Retweet

@@ -3,7 +3,7 @@ from django.views.generic import ListView, DetailView
 from .models import Twit, Likes
 from account.forms import MyForm
 from django.urls import reverse_lazy
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 # Create your views here.
@@ -43,8 +43,6 @@ class TwitDetail(DetailView):
 		return twit
 
 def like(request, app_name, url_name, pk):
-	print(request.resolver_match.url_name)
-	print(request.resolver_match.app_names[0])
 	user = request.user
 	twit = get_object_or_404(Twit, pk=pk)
 	if Likes.objects.filter(Q(users=user) & Q(twits=twit)).exists():
@@ -55,4 +53,11 @@ def like(request, app_name, url_name, pk):
 	link = "{}:{}".format(app_name, url_name)
 
 	return redirect(link)
+
+def like_info(request, pk):
+	twit = get_object_or_404(Twit, pk=pk)
+	return JsonResponse({
+			"likes": twit.like_count
+	})
+
 
