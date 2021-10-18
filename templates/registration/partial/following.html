@@ -1,6 +1,11 @@
 <div class="container">
 	<form method="POST">
 		{% csrf_token %}
-		<button class=" btn btn-primary p-2 w-100">{{ btn_name }}</button>
+		<button id="f-btn" class=" btn btn-primary p-2 w-100">{{ btn_name }}</button>
 	</form>
+	<script type="text/javascript">
+		$('#f-btn').click(function(e) {
+			e.preventDefault()
+		})
+	</script>
 </div>

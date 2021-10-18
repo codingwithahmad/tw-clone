@@ -23,7 +23,35 @@
             <img class="card-img-below img-fluid center" style="display: block;" src="{{ twit.img.url }}">
           </div>
     {% endif %}
+    <div class="info_bar">
+      <span class="text-dark text-md fw-bold text-uppercase" style="cursor: pointer;"><a onclick="like_func('like-list')">{{ twit.like_count }} Like</a></span>
+      {% for user_liked in twit.likes.all %}
+      <p class="m-4" style="display: none;" id="like-list" class="text-dark text-md fw-bold my-font
+      ">
+        {{ user_liked.users.get_full_name }}
+      </p>
+      {% endfor %}
+    </div>
     {% render_comments twit request %}
     {% include_bootstrap %}
 	</div>
+
+  <script type="text/javascript">
+    function like_func(id) {
+      if (document.getElementById(id).style.display === 'none') {
+        document.getElementById(id).style.display = 'block';
+      } else {
+        document.getElementById(id).style.display = 'none';
+      }
+    }
+  </script>
+
+
+
+
+
+
+
 {% endblock %}
+
+

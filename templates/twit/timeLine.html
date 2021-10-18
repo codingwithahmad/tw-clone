@@ -45,8 +45,15 @@
           {% endif %}
           <span class="d-flex justify-content-around">
             <a href="{% url 'twits:TwitDetail' twit.pk %}"><i class="far fa-comment"></i></a>
-            <i class="fas fa-retweet text-primary"></i>
+            <!-- retweet section -->
+
+            {% retweet request twit.retweet_count twit.pk request.resolver_match.url_name request.resolver_match.app_names.0 %}
+
+            <!-- like section -->
+
             {% like request twit.like_count twit.pk request.resolver_match.url_name request.resolver_match.app_names.0 %}
+          
+
           </span>
         </div>
       {% endfor %}

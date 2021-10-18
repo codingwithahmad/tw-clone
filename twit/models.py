@@ -16,6 +16,10 @@ class Twit(models.Model):
 	@property
 	def like_count(self):
 		return self.likes.all().count()
+
+	@property
+	def retweet_count(self):
+		return self.retweet.all().count()
 	
 	
 	def __str__(self):
@@ -32,6 +36,14 @@ class Likes(models.Model):
 	twits = models.ForeignKey(Twit, related_name="likes", on_delete=models.CASCADE)
 
 	created = models.DateTimeField(auto_now_add=True)
+
+class Retweet(models.Model):
+	user = models.ForeignKey(User, related_name="retweet", on_delete=models.CASCADE)
+
+	twit = models.ForeignKey(Twit, related_name="retweet", on_delete=models.CASCADE)
+
+	created = models.DateTimeField(auto_now_add=True)
+
 
 	
 		

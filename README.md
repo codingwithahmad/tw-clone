@@ -76,7 +76,11 @@ This is a social media clone by django
 
 
 # Retweet
-- [ ] Retweet
+- [x] Add Retweet model in twit.models
+- [x] Add retweet includion tag to base_tags.py in twit/templatetags
+- [x] Add retweet.html to templates/twit/partial
+- [x] Add retweet tag to timeline block in timeline.html
+- [x] Add Ajax and JQuery
 
 
  
