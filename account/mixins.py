@@ -1,10 +1,8 @@
+from django.http import HttpResponseNotFound
 
-class FormValid():
-	
-
-	def form_valid(self, form):
-		self.obj = form.save(commit=False)
-		self.obj.author = self.request.user
-
-
-		return super().form_valid(form)
+class EditProfileMixin():
+	def dispatch(self, request, pk, *args, **kwargs):
+		if request.user.pk == pk:
+			return super().dispatch(request, *args, **kwargs)
+		else:
+			return HttpResponseNotFound("شما اجازه دسترسی به این بخش را ندارید")  

@@ -1,0 +1,24 @@
+{% extends 'registration/base.html' %}
+{% load static %}
+{% block main %}
+      <div class="wrapper fadeInDown">
+        <div id="formContent">
+          <!-- Tabs Titles -->
+          <h1>404</h1>
+
+          <!-- Icon -->
+          <div class="fadeIn first">
+            <img src="{% static 'registration/assest/404.png' %}" id="icon" alt="404error" />
+          </div>
+
+          <!-- Login Form -->
+          <p>{{ exception }}</p>
+
+          <!-- Remind Passowrd -->
+          <div id="formFooter">
+            <a class="underlineHover" href="{% url 'twits:TimeLine' %}">صفحه اصلی</a>
+          </div>
+
+    	</div>
+    </div>
+{% endblock %}

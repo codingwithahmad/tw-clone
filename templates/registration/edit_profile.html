@@ -22,7 +22,7 @@
           </div>
 
           <!-- Login Form -->
-          <form method="POST">
+          <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="col-12 mb-4">
               {{ form.username|as_crispy_field }}
@@ -69,6 +69,8 @@
 
             <div class="col-12 mb-4">
               {{ form.profile_photo|as_crispy_field }}
+              <label class="btn-primary p-2 text-white border border-dark border-3 rounded rounded-5" for="{{ form.profile_photo.auto_id }}"><i class="far fa-images fa-lg"></i></label>
+
               {% if form.profile_photo.errors %}
                 <div class="errors">
                   {% for err in form.profile_photo.errors %}

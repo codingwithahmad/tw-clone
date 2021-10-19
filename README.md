@@ -82,5 +82,8 @@ This is a social media clone by django
 - [x] Add retweet tag to timeline block in timeline.html
 - [x] Add Ajax and JQuery
 
-
+# Security
+- [x] Add EditProfileMixin
+- [x] Add handel404 view in account.views
+- [x] Set handler404 in config.urls 
  

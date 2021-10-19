@@ -13,7 +13,7 @@ class User(AbstractUser):
 
 	profile_photo = models.ImageField(upload_to='images/profile_photo', verbose_name="عکس پروفایل", default="media/images/default.jpg")
 
-	bio = models.TextField(max_length=280, null=True, verbose_name="بیوگرافی")
+	bio = models.TextField(max_length=280, blank=True, verbose_name="بیوگرافی")
 
 	
 

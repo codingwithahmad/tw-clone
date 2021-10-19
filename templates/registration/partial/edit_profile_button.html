@@ -1,5 +1,5 @@
 <div class="container">
-	<a class="btn btn-primary w-100" href="{% url 'account:edit_profile' user.pk %}">
+	<a class="btn btn-primary w-100" href="{% url 'account:edit_profile' request.user.pk %}">
 		ویرایش پروفایل
 	</a>
 </div>

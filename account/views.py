@@ -4,11 +4,11 @@ from django.views.generic import CreateView, ListView, UpdateView
 from twit.models import Twit
 from .forms import MyForm, FollowForm, SignUpForm
 from .models import User, UserFollowing
-from .mixins import FormValid
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.views import LoginView
 from django.db.models import Q
+from .mixins import EditProfileMixin
 # Create your views here.
 
 class Login(LoginView):
@@ -55,7 +55,7 @@ class Profile(ListView):
 
 		return HttpResponseRedirect(reverse_lazy('account:profile', kwargs={'username': author.username}))
 
-class EditProfile(UpdateView):
+class EditProfile(EditProfileMixin, UpdateView):
 	model = User
 	fields = ['username', 'first_name', 'last_name', 'bio', 'profile_photo']
 	template_name = 'registration/edit_profile.html'
@@ -118,3 +118,9 @@ def activate(request, uidb64, token):
         return TemplateResponse(request, 'registration/activate_confirm.html', {})
     else:
         return HttpResponse('لینک فعال سازی نامعتبر است. <a href="account/register" > دوباره امتحان کنید </a>')
+
+
+def handel404(request, exception):
+	response = render(request, "404.html", {"exception": exception})
+	response.status_code = 404
+	return response   
