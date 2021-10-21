@@ -87,3 +87,6 @@ This is a social media clone by django
 - [x] Add handel404 view in account.views
 - [x] Set handler404 in config.urls 
  
+# Suggested section
+- [x] Create card row
+- [x] Set card

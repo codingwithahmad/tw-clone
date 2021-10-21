@@ -5,6 +5,8 @@ from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404
 from account.models import User, UserFollowing
 from django.db.models import Q
+
+
 register = template.Library()
 
 
@@ -61,4 +63,11 @@ def retweet(request, count, pk, url_name, app_name):
 		"app_name": app_name,
 		"url_name": url_name,
 		"count": count,
+	}
+
+@register.inclusion_tag('twit/partial/userbox.html')
+def box():
+	users = User.objects.all()
+	return {
+		"users": users
 	}

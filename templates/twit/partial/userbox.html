@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="row flex-row flex-nowrap overflow-auto">
+    {% for user in users %}
+        <div class="col-3">
+          <div class="cart">
+            <img src="{{ user.profile_photo.url }}" alt="">
+            {% if user.get_full_name %}
+              <h4>{{ user.get_full_name|truncatechars:10}}</h4>
+            {% else %}
+              <h4>{{user.username}}</h4>
+            {% endif %}
+            <button>Follow</button>
+          </div>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+
+
+
