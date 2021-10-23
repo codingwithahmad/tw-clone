@@ -1,5 +1,5 @@
 <span>
-<a style="text-decoration:none;" class="like-btn" data-pk="{{ pk }}" href="{% url 'twits:like' app_name url_name pk %}">
+<a style="text-decoration:none;" class="like-btn" data-pk="{{ pk }}" href="{% url 'api:like' app_name url_name pk %}">
    <span id="likes-count-{{ pk }}">{{ count }}</span> <i class="far fa-heart text-primary"></i> 
 </a>
 </span>

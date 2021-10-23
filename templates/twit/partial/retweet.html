@@ -1,5 +1,5 @@
 <span>
-<a style="text-decoration:none;" class="retweet-btn" data-pk="{{ pk }}" href="{% url 'twits:retweet' app_name url_name pk %}">
+<a style="text-decoration:none;" class="retweet-btn" data-pk="{{ pk }}" href="{% url 'api:retweet' app_name url_name pk %}">
    <span id="retweet-count-{{ pk }}">{{ count }}</span><i class="fas fa-retweet text-primary"></i>
 </a>
 </span>

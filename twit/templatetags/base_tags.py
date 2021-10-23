@@ -31,19 +31,28 @@ def follow_info(context):
 	followers = len(author.followers.all())
 	return { 'user': author, 'twits': twits, 'following': following, 'followers': followers }
 
-@register.inclusion_tag('registration/partial/following.html', takes_context=True)
-def following(context):
-	button_name = None
-	author = context['author']
-	user = context['request'].user
-	if UserFollowing.objects.filter(Q(user_id=user) & Q(following_user_id=author)).exists():
-		button_name = "دنبال نکردن"
-	else:
-		button_name = "دنبال کردن"
+@register.inclusion_tag('registration/partial/following.html')
+def following(request, url_name, app_name, username):
+	# button_name = None
+	# author = context['author']
+	# user = context['request'].user
+	# if UserFollowing.objects.filter(Q(user_id=user) & Q(following_user_id=author)).exists():
+	# 	button_name = "دنبال نکردن"
+	# else:
+	# 	button_name = "دنبال کردن"
 
 
-	if author != user:
-		return {'follow_form': FollowForm, 'btn_name': button_name }
+	# if author != user:
+	# 	return {'follow_form': FollowForm, 'btn_name': button_name }
+
+	return {
+		"request": request,
+		"username": username,
+		"app_name": app_name,
+		"url_name": url_name,
+	}
+
+
 
 @register.inclusion_tag('twit/partial/like.html')
 def like(request, count, pk, url_name, app_name):
@@ -66,8 +75,8 @@ def retweet(request, count, pk, url_name, app_name):
 	}
 
 @register.inclusion_tag('twit/partial/userbox.html')
-def box():
-	users = User.objects.all()
+def box(request):
+	users = User.objects.exclude(pk=request.user.pk)
 	return {
 		"users": users
 	}

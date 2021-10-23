@@ -1,5 +1,6 @@
 {% extends 'registration/base_profile.html' %}
 {% load static %}
+{% load base_tags %}
 
 
 {% block user_info %}
@@ -24,6 +25,11 @@
 		</div>
 </div>
 {% endblock %}
+
+{% block follow_block %}
+  {% following request request.resolver_match.url_name  request.resolver_match.app_names.0 author.username  %}
+{% endblock %}
+
 
 
 {% block main %}

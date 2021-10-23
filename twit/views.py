@@ -42,38 +42,5 @@ class TwitDetail(DetailView):
 
 		return twit
 
-def like(request, app_name, url_name, pk):
-	user = request.user
-	twit = get_object_or_404(Twit, pk=pk)
-	if Likes.objects.filter(Q(users=user) & Q(twits=twit)).exists():
-		Likes.objects.filter(Q(users=user) & Q(twits=twit)).delete()
-	else:
-		t_like = Likes(users=user, twits=twit)
-		t_like.save()
-	link = "{}:{}".format(app_name, url_name)
-
-	return redirect(link)
-
-
-def like_info(request, pk):
-	twit = get_object_or_404(Twit, pk=pk)
-	return JsonResponse({
-			"likes": twit.like_count,
-			"retweet": twit.retweet_count
-	})
-
-
-
-def retweet(request, app_name, url_name, pk):
-	user = request.user
-	twit = get_object_or_404(Twit, pk=pk)
-	if Retweet.objects.filter(Q(user=user) & Q(twit=twit)).exists():
-		Retweet.objects.filter(Q(user=user) & Q(twit=twit)).delete()
-	else:
-		t_retweet = Retweet(user=user, twit=twit)
-		t_retweet.save()
-	link = "{}:{}".format(app_name, url_name)
-
-	return redirect(link)
 
 

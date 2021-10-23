@@ -1,11 +1,41 @@
 <div class="container">
-	<form method="POST">
-		{% csrf_token %}
-		<button id="f-btn" class=" btn btn-primary p-2 w-100">{{ btn_name }}</button>
-	</form>
-	<script type="text/javascript">
-		$('#f-btn').click(function(e) {
-			e.preventDefault()
-		})
-	</script>
+	<a style="text-decoration:none;" id="follow-btn" class="follow-btn btn btn-primary" date-us="{{ username }}" href="{% url 'api:follow' app_name url_name username %}">
+		دنبال کردن
+	</a>
 </div>
+
+<script type="text/javascript">
+        e.preventDefault()
+        function get_likes(link) {
+            $.ajax({
+                        url: link,
+                        success: function(s) {
+                            if (s.is_following) {
+                                $("#follow-btn").html("دنبال نکردن")
+                            } else {
+                                $("#follow-btn").html("دنبال کردن")
+                            }
+                        },
+                        error: function(error) {
+                            console.log('err')
+                        }
+
+                    })
+        }
+
+        $(".follow-btn").click(function(e) {
+            e.preventDefault()
+            var username = $(this).attr("date-us")
+            var link = "/api/" + username
+            var url = $(this).attr("href")
+            $.ajax({
+                url: url,
+                success: function(success) {
+                    get_likes(link)
+                },
+                error: function(error) {
+                    console.log(error)
+                }
+            })
+        })
+</script>

@@ -1,5 +1,5 @@
 from django.template.response import TemplateResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import CreateView, ListView, UpdateView
 from twit.models import Twit
 from .forms import MyForm, FollowForm, SignUpForm
@@ -62,6 +62,8 @@ class EditProfile(EditProfileMixin, UpdateView):
 
 	def get_success_url(self):
 		return reverse_lazy('account:profile', kwargs={'username': self.request.user.username})
+
+
 
 
 

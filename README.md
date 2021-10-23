@@ -90,3 +90,10 @@ This is a social media clone by django
 # Suggested section
 - [x] Create card row
 - [x] Set card
+
+# Api app
+- [x] Create api app  
+- [x] Set urls.py for api app and include that in config.urls
+- [x] Transfer like, retweet, follow and like_info views to api.views
+- [x] Transfer urls for like, retweet, follow and like_info views to api.urls
+- [x] Change following inclsion tag and than profile.html

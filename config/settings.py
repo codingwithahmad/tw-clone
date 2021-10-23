@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'account.apps.AccountConfig',
+    'api.apps.ApiConfig',
     'twit.apps.TwitConfig',
     'widget_tweaks',
     'crispy_forms',
