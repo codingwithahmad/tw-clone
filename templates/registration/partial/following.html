@@ -1,29 +1,38 @@
 <div class="container">
-	<a style="text-decoration:none;" id="follow-btn" class="follow-btn btn btn-primary" date-us="{{ username }}" href="{% url 'api:follow' app_name url_name username %}">
-		دنبال کردن
+	<a style="text-decoration:none;" id="follow-btn" class="follow-btn btn {% if is_following %} btn-primary {% else %} btn-light {% endif %} w-100" date-us="{{ username }}" href="{% url 'api:follow' app_name url_name username %}">
+		{% if is_following %}
+            در حال دنبال کردن
+        {% else %}
+            دنبال کردن
+        {% endif %}
 	</a>
 </div>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script type="text/javascript">
-        e.preventDefault()
         function get_likes(link) {
             $.ajax({
                         url: link,
                         success: function(s) {
                             if (s.is_following) {
-                                $("#follow-btn").html("دنبال نکردن")
+                                $("#follow-btn").html("در حال دنبال کردن")
+                                $("#follow-btn").removeClass("btn-light")
+                                $("#follow-btn").addClass("btn-primary")
                             } else {
                                 $("#follow-btn").html("دنبال کردن")
+                                $("#follow-btn").removeClass("btn-primary")
+                                $("#follow-btn").addClass("btn-light")
                             }
+
+                            $("#followers").html(s.followers);
                         },
                         error: function(error) {
                             console.log('err')
                         }
 
                     })
-        }
+        };
 
-        $(".follow-btn").click(function(e) {
+        $("#follow-btn").click(function(e) {
             e.preventDefault()
             var username = $(this).attr("date-us")
             var link = "/api/" + username
@@ -37,5 +46,5 @@
                     console.log(error)
                 }
             })
-        })
+        });
 </script>

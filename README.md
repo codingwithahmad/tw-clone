@@ -52,6 +52,7 @@ This is a social media clone by django
 - [x] Change post def in Profile view to handel post req 
 
 
+
 # Register 
 - [x] Add register.html and activate_account.html 
 - [x] Add Registration and activate views in account.views
@@ -97,3 +98,7 @@ This is a social media clone by django
 - [x] Transfer like, retweet, follow and like_info views to api.views
 - [x] Transfer urls for like, retweet, follow and like_info views to api.urls
 - [x] Change following inclsion tag and than profile.html
+
+
+# Bugs
+- [x] TimeLine showing following tweet bug

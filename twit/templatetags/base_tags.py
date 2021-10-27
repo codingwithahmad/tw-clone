@@ -33,13 +33,13 @@ def follow_info(context):
 
 @register.inclusion_tag('registration/partial/following.html')
 def following(request, url_name, app_name, username):
-	# button_name = None
-	# author = context['author']
-	# user = context['request'].user
-	# if UserFollowing.objects.filter(Q(user_id=user) & Q(following_user_id=author)).exists():
-	# 	button_name = "دنبال نکردن"
-	# else:
-	# 	button_name = "دنبال کردن"
+	is_following = False
+	author = get_object_or_404(User, username=username)
+	user = request.user
+	if UserFollowing.objects.filter(Q(user_id=user) & Q(following_user_id=author)).exists():
+		is_following = True
+	else:
+		is_following = False
 
 
 	# if author != user:
@@ -50,6 +50,7 @@ def following(request, url_name, app_name, username):
 		"username": username,
 		"app_name": app_name,
 		"url_name": url_name,
+		"is_following": is_following
 	}
 
 
@@ -75,8 +76,10 @@ def retweet(request, count, pk, url_name, app_name):
 	}
 
 @register.inclusion_tag('twit/partial/userbox.html')
-def box(request):
+def box(request, url_name, app_name):
 	users = User.objects.exclude(pk=request.user.pk)
 	return {
-		"users": users
+		"users": users,
+		"url_name": url_name,
+		"app_name": app_name
 	}

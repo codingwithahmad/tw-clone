@@ -21,7 +21,7 @@
 {% endblock %}
 
 {% block user_box %}
-  {% box request %}
+  {% box request request.resolver_match.url_name request.resolver_match.app_names.0 %}
 {% endblock %}
 
 

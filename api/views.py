@@ -48,13 +48,15 @@ def follow_info(request, username):
 	is_following = False
 	user = get_object_or_404(User, username=username)
 	followers = user.followers.all()
-
-	if request.user in followers:
+	u_id = [u.user_id for u in followers]
+	if request.user in u_id:
 		is_following = True
-
+	
 	return JsonResponse({
-		"is_following": is_following
+		"is_following": is_following,
+		"followers": followers.count()
 	})
+	
 
 
 
