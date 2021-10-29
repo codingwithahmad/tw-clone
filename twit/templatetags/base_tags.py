@@ -77,7 +77,11 @@ def retweet(request, count, pk, url_name, app_name):
 
 @register.inclusion_tag('twit/partial/userbox.html')
 def box(request, url_name, app_name):
-	users = User.objects.exclude(pk=request.user.pk)
+	following = request.user.following.all()
+	f_list = [f.following_user_id.pk for f in following]
+	f_list.append(request.user.pk)
+	users = User.objects.exclude(pk__in=f_list)
+
 	return {
 		"users": users,
 		"url_name": url_name,

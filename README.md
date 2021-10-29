@@ -102,3 +102,4 @@ This is a social media clone by django
 
 # Bugs
 - [x] TimeLine showing following tweet bug
+- [x] UserBox showing following users bug
