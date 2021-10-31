@@ -24,6 +24,11 @@ urlpatterns = [
     path('account/', include('account.urls')),
     path('', include("django.contrib.auth.urls")),
     path('comment/', include('comment.urls')),
+
+
+    # Api
+    path('api-auth/', include('rest_framework.urls')),
+    path('rest-api/', include('rest_api.urls')),
     path('api/', include('api.urls')),
 ]
 handler404 = handel404

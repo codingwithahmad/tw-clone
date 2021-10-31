@@ -35,23 +35,11 @@ class Profile(ListView):
 
 	def post(self, request, *args, **kwargs):
 		
-		username = self.kwargs.get("username")
-		author = get_object_or_404(User, username=username)
-
-
-		if author == request.user:
-			self.twForm = MyForm(request.POST, request.FILES)
-			twit = self.twForm.save(commit=False)
-			twit.author = request.user
-			twit.save()
-		else:
-			following = FollowForm(request.POST).save(commit=False)
-			if not UserFollowing.objects.filter(Q(user_id=request.user) & Q(following_user_id=author)).exists():
-				following.user_id = request.user
-				following.following_user_id = author
-				following.save()
-			else:
-				UserFollowing.objects.filter(Q(user_id=request.user) & Q(following_user_id=author)).delete()
+		self.twForm = MyForm(request.POST, request.FILES)
+		twit = self.twForm.save(commit=False)
+		twit.author = request.user
+		twit.save()
+		
 
 		return HttpResponseRedirect(reverse_lazy('account:profile', kwargs={'username': author.username}))
 

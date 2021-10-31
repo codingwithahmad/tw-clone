@@ -103,3 +103,14 @@ This is a social media clone by django
 # Bugs
 - [x] TimeLine showing following tweet bug
 - [x] UserBox showing following users bug
+
+
+# Rest_api app
+- [x] install djangorestframework
+- [x] add rest_framework to INSTALLED_APP
+- [X] add REST_FRAMEWOK dict to settings.py 
+- [x] add and config rest_api app 
+- [x] make serializers.py file in rest_api app
+- [x] make LikeSerializer and RetweetSerializer in rest_api.serializers
+- [x] make LikeView, LikeDetails, RetweetView and RetweetDetalis in rest_api.views
+- [x] config urls for LikeView, LikeDetails, RetweetView and RetweetDetalis in rest_api.views

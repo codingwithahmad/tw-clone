@@ -25,6 +25,7 @@ def follow(request, app_name, url_name, username):
 
 
 def like(request, app_name, url_name, pk):
+	
 	user = request.user
 	twit = get_object_or_404(Twit, pk=pk)
 	if Likes.objects.filter(Q(users=user) & Q(twits=twit)).exists():
