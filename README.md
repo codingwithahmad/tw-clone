@@ -114,3 +114,4 @@ This is a social media clone by django
 - [x] make LikeSerializer and RetweetSerializer in rest_api.serializers
 - [x] make LikeView, LikeDetails, RetweetView and RetweetDetalis in rest_api.views
 - [x] config urls for LikeView, LikeDetails, RetweetView and RetweetDetalis in rest_api.views
+- [x] Add MakeLike and MakeRetweet views in rest_apo.views
