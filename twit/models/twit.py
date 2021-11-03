@@ -4,7 +4,11 @@ from django.utils import timezone
 from django.contrib.contenttypes.fields import GenericRelation
 from comment.models import Comment
 from django.urls import reverse_lazy
-# Create your models here.
+
+
+
+
+
 
 class Twit(models.Model):
 	twit = models.TextField(max_length=280, verbose_name="توییت")
@@ -28,27 +32,3 @@ class Twit(models.Model):
 	class Meta:
 		verbose_name = "توییت"
 		verbose_name_plural = "توییت ها"
-
-
-class Likes(models.Model):
-	users = models.ForeignKey(User, related_name="likes", on_delete=models.CASCADE)
-
-	twits = models.ForeignKey(Twit, related_name="likes", on_delete=models.CASCADE)
-
-	created = models.DateTimeField(auto_now_add=True)
-
-class Retweet(models.Model):
-	user = models.ForeignKey(User, related_name="retweet", on_delete=models.CASCADE)
-
-	twit = models.ForeignKey(Twit, related_name="retweet", on_delete=models.CASCADE)
-
-	created = models.DateTimeField(auto_now_add=True)
-
-
-	
-		
-	
-
-
-
-	

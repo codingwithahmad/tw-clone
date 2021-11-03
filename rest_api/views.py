@@ -1,11 +1,11 @@
 from django.shortcuts import render
-from twit.models import Likes, Retweet
+from twit.models import Likes, Retweet, Twit
 from rest_framework.generics import (
 	RetrieveAPIView,
 	ListAPIView,
 	CreateAPIView,
 )
-from .serializers import LikeSerializer, RetweetSerializer
+from .serializers import LikeSerializer, RetweetSerializer, TwitSerializer
 # Create your views here.
 
 class LikeView(ListAPIView):
@@ -33,3 +33,9 @@ class MakeLike(CreateAPIView):
 class MakeRetweet(CreateAPIView):
 	queryset = Retweet.objects.all()
 	serializer_class = RetweetSerializer
+
+
+
+class Twits(ListAPIView):
+	queryset = Twit.objects.all()
+	serializer_class = TwitSerializer

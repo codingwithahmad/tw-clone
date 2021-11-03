@@ -1,5 +1,7 @@
 from django.contrib import admin
-from .models import Twit, Likes, Retweet
+from .models import Twit
+from .models import Likes
+from .models import Retweet
 # Register your models here.
 @admin.register(Twit)
 class TwitAdmin(admin.ModelAdmin):

@@ -111,6 +111,7 @@ env.bak/
 venv.bak/
 media
 assest
+README2.md
 
 # Spyder project settings
 .spyderproject
