@@ -9,7 +9,6 @@ from django.urls import reverse_lazy
 
 
 
-
 class Twit(models.Model):
 	twit = models.TextField(max_length=280, verbose_name="توییت")
 	img = models.ImageField(upload_to='images', blank=True, null=True)

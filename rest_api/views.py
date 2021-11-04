@@ -39,3 +39,7 @@ class MakeRetweet(CreateAPIView):
 class Twits(ListAPIView):
 	queryset = Twit.objects.all()
 	serializer_class = TwitSerializer
+
+class TwitDetails(RetrieveAPIView):
+	queryset = Twit.objects.all()
+	serializer_class = TwitSerializer

@@ -19,8 +19,6 @@ class RetweetSerializer(serializers.ModelSerializer):
 
 
 class TwitSerializer(serializers.ModelSerializer):
-
-
 	class Meta:
 		model = Twit
-		fields = '__all__'
+		fields = ['id', 'twit', 'author', 'created', 'like_count', 'retweet_count']

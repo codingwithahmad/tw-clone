@@ -7,12 +7,14 @@ from .views import (
 	MakeLike,
 	MakeRetweet,
 	Twits,
+	TwitDetails,
 )
 
 app_name = "rest_api"
 
 urlpatterns = [
 	path('twits', Twits.as_view(), name='twits'),
+	path('twits/<int:pk>', TwitDetails.as_view(), name='twits-details'),
 
 
 	path('likes', LikeView.as_view(), name='likes'),
