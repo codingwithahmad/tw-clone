@@ -1,8 +1,8 @@
-این پروژه یک شبکه اجتماعی مشابه با توییتر است که با فریمورک جنگو در حال تپسعه است
+این پروژه یک شبکه اجتماعی مشابه با توییتر است که با فریمورک جنگو در حال توسعه است.
 
 
 ## How to run
-***
+
    1. Clone the project
    2. in the tw-clone folder, rename the `.env-sample` to `.env` and do proper change
    3. Create a virtualenv named venv using `virtualenv -p python3 venv`
