@@ -16,8 +16,9 @@ class TimeLine(LoginRequiredMixin, ListView):
 	def get_queryset(self):
 		following_list = self.request.user.following.all()
 		following = [ f.following_user_id for f in following_list]
+		# f_id = [f.id for f in following]
 		if following:	
-				return Twit.objects.filter(Q(author=self.request.user) | Q(author__in=following)).order_by('-created')
+				return Twit.objects.filter(Q(author=self.request.user) | Q(author__in=following) | Q(retweet__user__in=following)).order_by('-created')
 		else:
 			return Twit.objects.filter(author=self.request.user)			
 

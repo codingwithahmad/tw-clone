@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from twit.models import Likes, Retweet, Twit
 from rest_framework.generics import (
 	RetrieveAPIView,
@@ -6,6 +6,7 @@ from rest_framework.generics import (
 	CreateAPIView,
 )
 from .serializers import LikeSerializer, RetweetSerializer, TwitSerializer
+
 # Create your views here.
 
 class LikeView(ListAPIView):
@@ -28,6 +29,17 @@ class RetweetDetails(RetrieveAPIView):
 class MakeLike(CreateAPIView):
 	queryset = Likes.objects.all()
 	serializer_class = LikeSerializer
+
+	def post(self, *args, **kwargs):
+		super().post(*args, **kwargs)
+		url_name = self.request.POST.get('url_name')
+		app_name = self.request.POST.get('app_name')
+
+		link = "{}:{}".format(app_name, url_name)
+
+
+		return redirect(link)
+
 
 
 class MakeRetweet(CreateAPIView):

@@ -10,7 +10,7 @@ from .views import (
 	TwitDetails,
 )
 
-app_name = "rest_api"
+app_name = "rest-api"
 
 urlpatterns = [
 	path('twits', Twits.as_view(), name='twits'),

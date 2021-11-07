@@ -26,7 +26,7 @@
     <div class="info_bar">
       <span class="text-dark text-md fw-bold text-uppercase" style="cursor: pointer;"><a onclick="like_func('like-list')">{{ twit.like_count }} Like</a></span>
       {% for user_liked in twit.likes.all %}
-      <p class="m-4" style="display: none;" id="like-list" class="text-dark text-md fw-bold my-font
+      <p class="m-4 d-none"  id="like-list" class="text-dark text-md fw-bold my-font
       ">
         {{ user_liked.users.get_full_name }}
       </p>
@@ -38,11 +38,8 @@
 
   <script type="text/javascript">
     function like_func(id) {
-      if (document.getElementById(id).style.display === 'none') {
-        document.getElementById(id).style.display = 'block';
-      } else {
-        document.getElementById(id).style.display = 'none';
-      }
+      let like = document.getElementById(id);
+      like.classList.toggle('d-none')      
     }
   </script>
 
