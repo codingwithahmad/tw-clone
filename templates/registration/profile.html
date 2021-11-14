@@ -61,10 +61,9 @@
             {% retweet request twit.retweet_count twit.pk request.resolver_match.url_name request.resolver_match.app_names.0 %}
 
             <!-- like section -->
-
+            {% csrf_token %}
             {% like request twit.like_count twit.pk request.resolver_match.url_name request.resolver_match.app_names.0 %}
           
-
           </span>
         </div>
       {% endfor %}

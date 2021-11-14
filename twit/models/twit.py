@@ -23,8 +23,7 @@ class Twit(models.Model):
 	@property
 	def retweet_count(self):
 		return self.retweet.all().count()
-	
-	
+		
 	def __str__(self):
 		return "{} - {}".format(self.author, self.twit)
 

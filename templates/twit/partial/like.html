@@ -1,7 +1,13 @@
 <span>
-<a style="text-decoration:none;" class="like-btn" id="like-button" href="{% url 'api:like', app_name url_name pk %}" data-pk="{{ pk }}">
-   <span id="likes-count-{{ pk }}">{{ count }}</span> <i class="far fa-heart text-primary"></i> 
+<a style="text-decoration:none;" class="like-btn" href="{% url 'rest-api:make-like' %}" data-pk="{{ pk }}">
+   <span id="likes-count-{{ pk }}" class="sp" >{{ count }}</span> <i  id="icon-{{ pk }}" class="far fa-heart text-primary"></i> 
 </a>
+{{ request.user.id|json_script:"user_id" }}
+{{ app_name|json_script:"app" }}
+{{ url_name|json_script:"url" }}
+{{ request.user.username|json_script:"username" }}
 </span>
+
+
 
 

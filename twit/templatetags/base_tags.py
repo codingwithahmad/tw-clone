@@ -62,7 +62,7 @@ def like(request, count, pk, url_name, app_name):
 		"pk": pk,
 		"app_name": app_name,
 		"url_name": url_name,
-		"count": count,
+		"count": count
 	}
 
 @register.inclusion_tag('twit/partial/retweet.html')

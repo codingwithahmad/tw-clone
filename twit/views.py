@@ -30,6 +30,7 @@ class TimeLine(LoginRequiredMixin, ListView):
 
 			return HttpResponseRedirect(reverse_lazy('twits:TimeLine'))
 
+
 class TwitDetail(DetailView):
 	template_name = 'twit/twit.html'
 	context_object_name = "twit"

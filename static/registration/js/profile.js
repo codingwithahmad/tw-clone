@@ -1,5 +1,6 @@
 const url_name = JSON.parse(document.getElementById('url').textContent);
 const app_name = JSON.parse(document.getElementById('app').textContent);
+const username = JSON.parse(document.getElementById('username').textContent);
 const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 const uid = JSON.parse(document.getElementById('user_id').textContent)
 const url = $(".like-btn").attr('href')
@@ -49,7 +50,7 @@ function send_post(id, url, url_name, app_name, link) {
             url: url,
             type: 'POST',
             headers: {'X-CSRFToken': csrftoken },
-            data: { twits: id, users: uid , url_name: url_name, app_name: app_name},
+            data: { twits: id, users: uid , url_name: url_name, app_name: app_name, username: username},
             success: function(success) {
                 get_likes(link, id)
             },
