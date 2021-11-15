@@ -4,6 +4,7 @@
    1. Python
    2. Django framework
    3. Django rest framework
+   4. Jquery
 
 ## How to run
 

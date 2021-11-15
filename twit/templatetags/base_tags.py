@@ -2,6 +2,7 @@ from django import template
 from account.forms import MyForm, FollowForm
 from django.http import HttpResponse
 from django.urls import reverse_lazy
+from ..models import Twit
 from django.shortcuts import get_object_or_404
 from account.models import User, UserFollowing
 from django.db.models import Q
@@ -57,12 +58,21 @@ def following(request, url_name, app_name, username):
 
 @register.inclusion_tag('twit/partial/like.html')
 def like(request, count, pk, url_name, app_name):
+	is_liked = None
+	twit = Twit.objects.get(pk=pk)
+	if twit.likes.filter(users=request.user).exists():
+		is_liked = True
+	else:
+		is_liked = False
+
+
 	return {
 		"request": request,
 		"pk": pk,
 		"app_name": app_name,
 		"url_name": url_name,
-		"count": count
+		"count": count,
+		"is_liked": is_liked
 	}
 
 @register.inclusion_tag('twit/partial/retweet.html')
